@@ -15,7 +15,7 @@ goto open
 if not exist %date:~-10,2%"-"%date:~7,2%"-"%date:~-4,4% mkdir %date:~-10,2%"-"%date:~7,2%"-"%date:~-4,4%
 Robocopy /S /E . ./%date:~-10,2%"-"%date:~7,2%"-"%date:~-4,4%
 cd %date:~-10,2%"-"%date:~7,2%"-"%date:~-4,4%
-rmdir %date:~-10,2%"-"%date:~7,2%"-"%date:~-4,4%
+rmdir %date:~-10,2%"-"%date:~7,2%"-"%date:~-4,4% /S /Q
 Echo backup finished!
 pause
 exit
