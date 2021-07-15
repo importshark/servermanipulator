@@ -1,4 +1,4 @@
-@echo on
+@echo off
 call:%~1 run
 if not exist "C:\Program Files\Java" echo This program cannot run without Java! Please install it! If you have installed it, make sure it is installed at "C:\Program Files\Java"
 :open
