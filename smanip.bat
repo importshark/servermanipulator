@@ -55,7 +55,6 @@ exit
 
 :create
 if exist server.jar goto error
-curl https://download1475.mediafire.com/y78kh9dj9kig/xld45j4lw2djw83/settings.bat --output settings.bat
 echo Server will create, but you must answer some questions.
 set /p answer=Override automatic optimization for low end devices? (Y/N)?
 if "%answer%"=="Y" set software=mcmain
