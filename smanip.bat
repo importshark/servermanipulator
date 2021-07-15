@@ -6,7 +6,7 @@ echo Welcome to the official minecraft vanilla server manipulator
 set /p answer=What operation would you like to execute? [E]dit, [C]reate, [D]elete, [B]ackup  or [R]un
 if "%answer%"=="E" goto edit
 if "%answer%"=="C" goto create
-if "%answer%"=="R" call runsets.bat
+if "%answer%"=="R" call settings.bat
 if "%answer%"=="D" goto del
 if "%answer%"=="B" goto bkup
 echo Answer!
@@ -76,7 +76,7 @@ if %software% EQU paper (
     )
 )
 pause
-call runsets.bat
+call settings.bat
 
 :run
 
