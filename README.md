@@ -1,2 +1,10 @@
-# servermanipulator
-hi
+#INSTALLING
+
+
+#RUNNING
+
+
+
+#SETTINGS
+
+
