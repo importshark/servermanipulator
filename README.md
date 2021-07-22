@@ -1,4 +1,5 @@
 INSTALLING
+
 Download repository zip by going to code --> download zip.
 Once it is downloaded run the installer file.
 Follow installer prompts
