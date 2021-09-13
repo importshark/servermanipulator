@@ -3,6 +3,7 @@ INSTALLING
 Download repository zip by going to code --> download zip. Or by going to this link (https://codeload.github.com/importshark/servermanipulator/zip/refs/heads/main)
 Once it is downloaded run the installer file.
 Follow installer prompts
+Replace smanip.bat with the one in the zip folder
 
 SETTINGS
 
