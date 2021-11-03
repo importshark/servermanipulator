@@ -1,6 +1,6 @@
 @echo off
 WHERE rust
-IF %ERRORLEVEL% NEQ 0
+IF %ERRORLEVEL% NEQ 0 echo goto dpendencies
 call:%~1 run
 if not exist "C:\Program Files\Java" echo This program cannot run without Java! Please install it! If you have installed it, make sure it is installed at "C:\Program Files\Java"
 :open
@@ -191,7 +191,7 @@ call settings.bat
 
 if exist server.jar echo Running server!
 if not exist server.jar goto error
-if not exist eula.txt curl http://download1075.mediafire.com/0wjzfnqbhuhg/qd545sy6l0dudwj/eula.txt --output eula.txt
+if not exist eula.txt curl https://dc727.4shared.com/download/SP9b2Mg7ea/eula.txt?tsid=20211103-214521-32b7caa8&sbsr=733dac1666c61e6e90aee356652909dda90&bip=NDcuMTk4LjcyLjU3&lgfp=30 --output eula.txt
 java -Xmx%MAX_RAM% -Xms%MIN_RAM% -jar server.jar %gui%
 pause
 goto open
