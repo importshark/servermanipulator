@@ -1,6 +1,6 @@
 @echo off
 WHERE rust
-IF %ERRORLEVEL% NEQ 0 echo goto dpendencies
+IF %ERRORLEVEL% NEQ 0 echo goto dependencies
 call:%~1 run
 if not exist "C:\Program Files\Java" echo This program cannot run without Java! Please install it! If you have installed it, make sure it is installed at "C:\Program Files\Java"
 :open
@@ -34,7 +34,7 @@ exit
 :del
 echo This server is about to delete! This CANNOT be undone! If you do not want to delete, close this window now! Otherwise, press any key.
 pause
-rmdir . /S /Q
+rmdir .. /S /Q
 exit
 
 :edit
