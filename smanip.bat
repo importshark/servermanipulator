@@ -1,16 +1,26 @@
 @echo off
+WHERE rust
+IF %ERRORLEVEL% NEQ 0
 call:%~1 run
 if not exist "C:\Program Files\Java" echo This program cannot run without Java! Please install it! If you have installed it, make sure it is installed at "C:\Program Files\Java"
 :open
 echo Welcome to the official minecraft vanilla server manipulator
 set /p answer=What operation would you like to execute? [E]dit, [C]reate, [D]elete, [B]ackup  or [R]un
 if "%answer%"=="E" goto edit
-if "%answer%"=="C" goto create
+if "%answer%"=="C" goto cq
 if "%answer%"=="R" call settings.bat
 if "%answer%"=="D" goto del
 if "%answer%"=="B" goto bkup
 echo Answer!
 goto open
+
+:dependencies
+echo Installing some dependencies please wait.
+curl https://static.rust-lang.org/rustup/dist/i686-pc-windows-msvc/rustup-init.exe --output rustup-init.exe
+rustup-init.exe
+cargo install hyperfine
+goto open
+
 
 :bkup
 if not exist %date:~-10,2%"-"%date:~7,2%"-"%date:~-4,4% mkdir %date:~-10,2%"-"%date:~7,2%"-"%date:~-4,4%
@@ -37,7 +47,7 @@ echo And if you have made a mistake, type exit on the next question.
 set /p answer=Continue?(Y/N)
 if "%answer%"=="N" goto open
 mkdir tmp
-echo #Minecraft server properties>./tmp/server.properties	
+echo #Minecraft server properties>./tmp/server.properties
 echo #Wed Jul 14 16:38:34 EDT 2021>>./tmp/server.properties
 goto etap
 
@@ -48,7 +58,7 @@ echo broadcast-rcon-to-ops=%answer%>>./tmp/server.properties
 set /p answer=Set view distance. default is 10
 if "%answer%"=="exit" goto editexit
 echo view-distance=%answer%>>./tmp/server.properties
-set /p answer=Enable jmx monitoring? Default is false 
+set /p answer=Enable jmx monitoring? Default is false
 if "%answer%"=="exit" goto editexit
 echo enable-jmx-monitoring=%answer%>>./tmp/server.properties
 set /p answer=Set server ip. Default is nothing(just press space and enter)
@@ -110,7 +120,7 @@ rem ses break
 set /p answer=Motd? default is A Minecraft Server
 if "%answer%"=="exit" goto editexit
 echo motd=%answer%>>./tmp/server.properties
-set /p answer=Query port? default is 25565                                                   
+set /p answer=Query port? default is 25565
 if "%answer%"=="exit" goto editexit
 echo query.port=%answer%>>./tmp/server.properties
 set /p answer=force gamemode? default is false
@@ -146,10 +156,16 @@ if not exist tmp echo Backup folder not found, but was still loaded
 rmdir tmp /s /q
 goto open
 
-:create
+:cq
+
 if exist server.jar goto error
-echo Server will create, but you must answer some questions.
-set /p answer=Override automatic optimization for low end devices? (Y/N)?
+cls
+title Server Creation
+echo Welcome to Server Creation
+set /p answer=Modded server?(Y/N)?
+if "%answer%"=="Y" set software=curse
+if "%answer%"=="N" set software=mc
+set /p answer=Do oyu
 if "%answer%"=="Y" set software=mcmain
 if "%answer%"=="N" set software=paper
 set /p answer=What version? Type version or latest
