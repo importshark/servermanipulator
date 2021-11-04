@@ -199,11 +199,18 @@ if %software% EQU curse (
 	cls
 	echo Click Install Server and set the directory to this directory
     )
+if %software% EQU curse (
+    if %version%  EQU "1.12.2" (
+        curl https://maven.minecraftforge.net/net/minecraftforge/forge/1.12.2-14.23.5.2855/forge-1.12.2-14.23.5.2855-installer.jar --output server.jar
+	cls
+	echo Click Install Server and set the directory to this directory
+    )
 )
 pause
-call settings.bat
 
 :run
+call settings.bat
+echo %date:~-10,2%"-"%date:~7,2%"-"%date:~-4,4% Ran server >> serverlog.txt
 call settings.bat
 find "false" eula.txt && (
 	echo You need to accept the eula. Change "false" to "true" && eula.txt && goto run)
@@ -211,6 +218,7 @@ if exist server.jar echo Running server!
 if exist run.bat run.bat
 if not exist server.jar goto error
 java -Xmx%MAX_RAM% -Xms%MIN_RAM% -jar server.jar %gui%
+if exist serverlog.txt
 pause
 goto open
 
