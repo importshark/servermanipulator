@@ -1,8 +1,9 @@
 @echo off
-WHERE rust
-IF %ERRORLEVEL% NEQ 0 echo goto dependencies
+WHERE hyperfine
+IF %ERRORLEVEL% NEQ 0 goto dep
 call:%~1 run
 if not exist "C:\Program Files\Java" echo This program cannot run without Java! Please install it! If you have installed it, make sure it is installed at "C:\Program Files\Java"
+cls
 :open
 echo Welcome to the official minecraft vanilla server manipulator
 set /p answer=What operation would you like to execute? [E]dit, [C]reate, [D]elete, [B]ackup  or [R]un
@@ -14,8 +15,10 @@ if "%answer%"=="B" goto bkup
 echo Answer!
 goto open
 
-:dependencies
+:dep
 echo Installing some dependencies please wait.
+cls
+echo Please press 1 and enter
 curl https://static.rust-lang.org/rustup/dist/i686-pc-windows-msvc/rustup-init.exe --output rustup-init.exe
 rustup-init.exe
 cargo install hyperfine
@@ -34,7 +37,7 @@ exit
 :del
 echo This server is about to delete! This CANNOT be undone! If you do not want to delete, close this window now! Otherwise, press any key.
 pause
-rmdir .. /S /Q
+rmdir . /S /Q
 exit
 
 :edit
@@ -163,11 +166,17 @@ cls
 title Server Creation
 echo Welcome to Server Creation
 set /p answer=Modded server?(Y/N)?
-if "%answer%"=="Y" set software=curse
+if "%answer%"=="Y" set software=curse && goto version
 if "%answer%"=="N" set software=mc
-set /p answer=Do oyu
-if "%answer%"=="Y" set software=mcmain
-if "%answer%"=="N" set software=paper
+echo Your computer is about to be benchmarked. Your computer may slow down.
+:sys
+hyperfine help -i
+set /p benchmarkanswer=Type the number you see next to System:
+set /p answer=Is %benchmarkanswer% correct?(Y/N)
+if %answer% EQU "N" goto sys
+if %benchmarkanswer% gtr 5 set software=paper
+if %benchmarkanswer% lss 5 set software=mcmain
+:version
 set /p answer=What version? Type version or latest
 if "%answer%"=="latest" set version="latest"
 echo Server creating!
@@ -184,14 +193,22 @@ if %software% EQU paper (
         curl https://papermc.io/api/v2/projects/paper/versions/1.17.1/builds/100/downloads/paper-1.17.1-100.jar --output server.jar
     )
 )
+if %software% EQU curse (
+    if %version%  EQU "latest" (
+        curl https://maven.minecraftforge.net/net/minecraftforge/forge/1.17.1-37.0.104/forge-1.17.1-37.0.104-installer.jar --output server.jar
+	cls
+	echo Click Install Server and set the directory to this directory
+    )
+)
 pause
 call settings.bat
 
 :run
-
+find "false" eula.txt && (
+	echo You need to accept the eula. Change "false" to "true" && eula.txt && goto run)
 if exist server.jar echo Running server!
+if exist run.bat run.bat
 if not exist server.jar goto error
-if not exist eula.txt curl https://dc727.4shared.com/download/SP9b2Mg7ea/eula.txt?tsid=20211103-214521-32b7caa8&sbsr=733dac1666c61e6e90aee356652909dda90&bip=NDcuMTk4LjcyLjU3&lgfp=30 --output eula.txt
 java -Xmx%MAX_RAM% -Xms%MIN_RAM% -jar server.jar %gui%
 pause
 goto open
