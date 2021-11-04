@@ -9,7 +9,7 @@ echo Welcome to the official minecraft vanilla server manipulator
 set /p answer=What operation would you like to execute? [E]dit, [C]reate, [D]elete, [B]ackup  or [R]un
 if "%answer%"=="E" goto edit
 if "%answer%"=="C" goto cq
-if "%answer%"=="O" goto run
+if "%answer%"=="R" goto run
 if "%answer%"=="D" goto del
 if "%answer%"=="B" goto bkup
 echo Answer!
