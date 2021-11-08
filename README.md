@@ -16,6 +16,4 @@ INFO
 Any errors will instantly send you to a screen and crash. Dont worry!
 To fix,
 1. Use common sense (The server propbably wont run if it is nonexistent, right?)
-2. Use the wiki! Post errors you find and they will (hopefully) be resolved
-3. Email me at icodedthevoid@gmail.com
 
