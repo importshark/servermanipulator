@@ -185,7 +185,10 @@ echo %version%
 pause
 if %software% EQU mcmain (
     if %version%  EQU "latest" (
-        curl https://launcher.mojang.com/v1/objects/a16d67e5807f57fc4e550299cf20226194497dc2/server.jar --output server.jar
+        curl https://mcversions.net/download/1.18.2 --output server.jar
+    )
+    else(
+        curl https://mcversions.net/download/%version --output server.jar
     )
 )
 if %software% EQU paper (
