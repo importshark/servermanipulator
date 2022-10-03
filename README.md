@@ -1,3 +1,6 @@
+This project is also old. I do not maintain it. You can try it, but I know lots of the functionality doesnt work as well as it does not support the latest server versions. If you want a minecraft server, just go to https://www.idtech.com/blog/creating-minecraft-server
+
+
 INSTALLING
 
 Download repository zip by going to code --> download zip. Or by going to this link (https://codeload.github.com/importshark/servermanipulator/zip/refs/heads/main)
